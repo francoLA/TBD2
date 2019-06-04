@@ -1,14 +1,20 @@
 package com.example.demo.models;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.gson.annotations.SerializedName;
-import lombok.Data;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "isapres")
 public class Isapre {
     @Id
@@ -69,4 +75,16 @@ public class Isapre {
                 ", fonasa=" + (this.fonasa ? "fonasa" : "isapre") +
                 '}';
     }
+
+    //RELACIONES
+
+    //Isapre -> Seguro
+    @OneToMany(mappedBy = "isapres")
+    @JsonIgnore
+    private List<Seguro> segurosList;
+
+    //Isapre -> Plan
+    @OneToMany(mappedBy = "isapres")
+    @JsonIgnore
+    private List<Plan> planList;
 }

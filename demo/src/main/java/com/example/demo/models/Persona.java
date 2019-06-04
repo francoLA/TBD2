@@ -1,14 +1,22 @@
 package com.example.demo.models;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.gson.annotations.SerializedName;
-import lombok.Data;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "personas")
 public class Persona {
     @Id
@@ -19,7 +27,7 @@ public class Persona {
     @NonNull
     private String genero;
 
-    public Persona(String id, String nombre, String genero {
+    public Persona(String id, String nombre, String genero) {
         this.id = id;
         this.nombre = nombre;
         this.genero = genero;
@@ -58,4 +66,24 @@ public class Persona {
                 ", genero='" + genero + '\'' +
                 '}';
     }
+
+    //RELACIONES
+
+    //Persona -> Cotizacion
+    @OneToMany(mappedBy = "personas")
+    @JsonIgnore
+    private List<Cotizacion> cotizacionesList;
+
+    //Persona -> Seguro
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "seguros")
+    private Seguro seguro;
+
+    //Persona -> Plan
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "planes")
+    private Plan plan;
+    
 }

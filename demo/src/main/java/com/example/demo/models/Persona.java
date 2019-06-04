@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,23 +17,20 @@ import org.springframework.data.annotation.Id;
 
 @Entity
 @NoArgsConstructor
-@Table(name = "isapres")
-public class Isapre {
+@Table(name = "personas")
+public class Persona {
     @Id
     @GeneratedValue
     private String id;
     @NonNull
     private String nombre;
     @NonNull
-    private String telefono;
-    @NonNull
-    private boolean fonasa;
+    private String genero;
 
-    public Isapre(String id, String nombre, String telefono, boolean fonasa) {
+    public Persona(String id, String nombre, String genero) {
         this.id = id;
         this.nombre = nombre;
-        this.telefono = telefono;
-        this.fonasa = fonasa;
+        this.genero = genero;
     }
 
     public String getId() {
@@ -50,41 +49,41 @@ public class Isapre {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
-    public boolean getFonasa() {
-        return fonasa;
-    }
-
-    public void setFonasa(boolean fonasa) {
-        this.fonasa = fonasa;
-    }
 
     @Override
     public String toString() {
-        return "Isapre{" +
+        return "Persona{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", fonasa=" + (this.fonasa ? "fonasa" : "isapre") +
+                ", genero='" + genero + '\'' +
                 '}';
     }
 
     //RELACIONES
 
-    //Isapre -> Seguro
-    @OneToMany(mappedBy = "isapres")
+    //Persona -> Cotizacion
+    @OneToMany(mappedBy = "personas")
     @JsonIgnore
-    private List<Seguro> segurosList;
+    private List<Cotizacion> cotizacionesList;
 
-    //Isapre -> Plan
-    @OneToMany(mappedBy = "isapres")
+    //Persona -> Seguro
+    @ManyToOne
     @JsonIgnore
-    private List<Plan> planList;
+    @JoinColumn(name = "seguros")
+    private Seguro seguro;
+
+    //Persona -> Plan
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "planes")
+    private Plan plan;
+    
 }

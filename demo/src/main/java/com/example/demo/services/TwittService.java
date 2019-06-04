@@ -23,7 +23,7 @@ public class TwittService {
     @Autowired
     private TwitterKafkaProducer twitterKafkaProducer;
 
-    @RequestMapping(value = "/{id", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Twitt getTwittById(@PathVariable String id){
         return this.twittRepository.findTweetById(id);

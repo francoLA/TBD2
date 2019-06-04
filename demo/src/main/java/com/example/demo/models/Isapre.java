@@ -13,19 +13,26 @@ import org.springframework.data.elasticsearch.annotations.Document;
 public class Isapre {
     @Id
     @GeneratedValue
-    private Long id;
+    private String id;
     @NonNull
     private String nombre;
     @NonNull
     private String telefono;
     @NonNull
-    private Boolean fonasa;
+    private boolean fonasa;
 
-    public Long getId() {
+    public Isapre(String id, String nombre, String telefono, boolean fonasa) {
+        this.id = id;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.fonasa = fonasa;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -45,11 +52,21 @@ public class Isapre {
         this.telefono = telefono;
     }
 
-    public Boolean getFonasa() {
+    public boolean getFonasa() {
         return fonasa;
     }
 
-    public void setFonasa(Boolean fonasa) {
+    public void setFonasa(boolean fonasa) {
         this.fonasa = fonasa;
+    }
+
+    @Override
+    public String toString() {
+        return "Isapre{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", fonasa=" + (this.fonasa ? "fonasa" : "isapre") +
+                '}';
     }
 }

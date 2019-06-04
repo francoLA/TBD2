@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/isapre")
 public class IsapreService {
@@ -14,7 +15,7 @@ public class IsapreService {
     @Autowired
     private IsapreRepository isapreRepository;
 
-    @RequestMapping(value = "/{id", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Isapre getIsapreById(@PathVariable String id){
         return this.isapreRepository.findIsapreById(id);

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/seguro")
 public class SeguroService {
@@ -14,7 +15,7 @@ public class SeguroService {
     @Autowired
     private SeguroRepository seguroRepository;
 
-    @RequestMapping(value = "/{id", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Seguro getSeguroById(@PathVariable String id){
         return this.seguroRepository.findSeguroById(id);

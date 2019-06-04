@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/clinica")
 public class ClinicaService {
@@ -14,7 +15,7 @@ public class ClinicaService {
     @Autowired
     private ClinicaRepository clinicaRepository;
 
-    @RequestMapping(value = "/{id", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Clinica getClinicaById(@PathVariable String id){
         return this.clinicaRepository.findClinicaById(id);

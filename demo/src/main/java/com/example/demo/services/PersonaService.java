@@ -1,0 +1,29 @@
+package com.example.demo.services;
+
+import com.example.demo.models.Persona;
+import com.example.demo.repositories.PersonaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/persona")
+public class PersonaService {
+
+    @Autowired
+    private PersonaRepository personaRepository;
+
+    @RequestMapping(value = "/{id", method = RequestMethod.GET)
+    @ResponseBody
+    public Persona getPersonaById(@PathVariable String id){
+        return this.personaRepository.findPersonaById(id);
+    }
+
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Persona> getAllPersonas(){
+        return personaRepository.findAll();
+    }
+
+}

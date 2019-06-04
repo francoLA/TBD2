@@ -7,10 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NonNull;
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = "cotizaciones")

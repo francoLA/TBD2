@@ -9,8 +9,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 @Entity
-@Table(name = "seguros")
-public class Seguro {
+@Table(name = "planes")
+public class Plan {
     @Id
     @GeneratedValue
     private String id;
@@ -19,7 +19,7 @@ public class Seguro {
     @NonNull
     private int cantidad_personas;
 
-    public Clinica(String id, String cobertura, int cantidad_personas {
+    public Plan(String id, String cobertura, int cantidad_personas {
         this.id = id;
         this.cobertura = cobertura;
         this.cantidad_personas = cantidad_personas;
@@ -41,18 +41,18 @@ public class Seguro {
         this.cobertura = cobertura;
     }
 
-    public String getCantidadPersonas() {
+    public int getCantidadPersonas() {
         return cantidad_personas;
     }
 
-    public void setCantidadPersonas(String cantidad_personas) {
+    public void setCantidadPersonas(int cantidad_personas) {
         this.cantidad_personas = cantidad_personas;
     }
 
 
     @Override
     public String toString() {
-        return "Seguro{" +
+        return "Plan{" +
                 "id=" + id +
                 ", cobertura='" + cobertura + '\'' +
                 ", cantidad personas='" + cantidad_personas + '\'' +

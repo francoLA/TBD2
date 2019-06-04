@@ -21,7 +21,7 @@ public class Seguro {
     @NonNull
     private String tipo;
 
-    public Clinica(String id, String cobertura, String duracion, String tipo) {
+    public Seguro(String id, String cobertura, String duracion, String tipo) {
         this.id = id;
         this.cobertura = cobertura;
         this.duracion = duracion;

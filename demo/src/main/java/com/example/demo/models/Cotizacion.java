@@ -10,7 +10,6 @@ import javax.persistence.Table;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.NonNull;
 
 @Entity
 @Table(name = "cotizaciones")
@@ -18,9 +17,9 @@ public class Cotizacion {
     @Id
     @GeneratedValue
     private String id;
-    @NonNull
+    @Column(nullable = false, name = "fecha")
     private Date fecha;
-    @NonNull
+    @Column(nullable = false, name = "monto")
     private int monto;
 
     public Cotizacion(String id, Date fecha, int monto) {

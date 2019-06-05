@@ -10,21 +10,17 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-
 @Entity
-@NoArgsConstructor
 @Table(name = "isapres")
 public class Isapre {
     @Id
     @GeneratedValue
     private String id;
-    @NonNull
+    @Column(nullable = false, name = "nombre")
     private String nombre;
-    @NonNull
+    @Column(nullable = false, name = "telefono")
     private String telefono;
-    @NonNull
+    @Column(nullable = false, name = "fonasa")
     private boolean fonasa;
 
     public Isapre(String id, String nombre, String telefono, boolean fonasa) {

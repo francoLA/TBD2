@@ -6,18 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.*;
 
-
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-
 @Entity
-@NoArgsConstructor
 @Table(name = "clinicas")
 public class Clinica {
     @Id
     @GeneratedValue
     private String id;
-    @NonNull
+    @Column(nullable = false, name = "nombre")
     private String nombre;
 
     public Clinica(String id, String nombre) {

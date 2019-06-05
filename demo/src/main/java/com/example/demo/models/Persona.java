@@ -12,19 +12,15 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-
 @Entity
-@NoArgsConstructor
 @Table(name = "personas")
 public class Persona {
     @Id
     @GeneratedValue
     private String id;
-    @NonNull
+    @Column(nullable = false, name = "nombre")
     private String nombre;
-    @NonNull
+    @Column(nullable = false, name = "genero")
     private String genero;
 
     public Persona(String id, String nombre, String genero) {

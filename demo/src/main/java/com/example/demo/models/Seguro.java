@@ -12,21 +12,18 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Entity
-@NoArgsConstructor
 @Table(name = "seguros")
 public class Seguro {
     @Id
     @GeneratedValue
     private String id;
-    @NonNull
+    @Column(nullable = false, name = "cobertura")
     private String cobertura;
-    @NonNull
+    @Column(nullable = false, name = "duracion")
     private String duracion;
-    @NonNull
+    @Column(nullable = false, name = "tipo")
     private String tipo;
 
     public Seguro(String id, String cobertura, String duracion, String tipo) {

@@ -2,29 +2,27 @@ package com.example.demo.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Id;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.springframework.data.annotation.Id;
-
 @Entity
-@NoArgsConstructor
 @Table(name = "planes")
 public class Plan {
     @Id
     @GeneratedValue
     private String id;
-    @NonNull
+    @Column(nullable = false, name = "cobertura")
     private String cobertura;
-    @NonNull
+    @Column(nullable = false, name = "cantidad_personas")
     private int cantidad_personas;
 
     public Plan(String id, String cobertura, int cantidad_personas) {
@@ -70,7 +68,7 @@ public class Plan {
     //RELACIONES
 
     //Plan -> Persona
-    @OneToMany(mappedBy = "planes")
+    /*@OneToMany(mappedBy = "planes")
     @JsonIgnore
     private List<Persona> personasList;
 
@@ -78,5 +76,5 @@ public class Plan {
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "isapres")
-    private Isapre isapre;
+    private Isapre isapre;*/
 }

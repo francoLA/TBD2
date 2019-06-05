@@ -1,23 +1,18 @@
 package com.example.demo.models;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
-
-
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 @Entity
-@NoArgsConstructor
 @Table(name = "clinicas")
 public class Clinica {
     @Id
     @GeneratedValue
     private String id;
-    @NonNull
+    @Column(nullable = false, name = "nombre")
     private String nombre;
 
     public Clinica(String id, String nombre) {

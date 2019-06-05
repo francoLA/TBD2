@@ -23,7 +23,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "palabra")
+@Table(name = "palabras")
 public class Palabra {
     @Id
     @Column(name = "id")
@@ -32,8 +32,6 @@ public class Palabra {
     private String texto;
     @Column(nullable = false, name = "tipo")
     private String tipo;
-
-    public Palabra(){}
 
     public Palabra(String texto, String tipo){
         this.texto = texto;

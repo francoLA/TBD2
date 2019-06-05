@@ -2,29 +2,27 @@ package com.example.demo.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Id;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.springframework.data.annotation.Id;
-
 @Entity
-@NoArgsConstructor
 @Table(name = "isapres")
 public class Isapre {
     @Id
     @GeneratedValue
     private String id;
-    @NonNull
+    @Column(nullable = false, name = "nombre")
     private String nombre;
-    @NonNull
+    @Column(nullable = false, name = "telefono")
     private String telefono;
-    @NonNull
+    @Column(nullable = false, name = "fonasa")
     private boolean fonasa;
 
     public Isapre(String id, String nombre, String telefono, boolean fonasa) {
@@ -79,12 +77,12 @@ public class Isapre {
     //RELACIONES
 
     //Isapre -> Seguro
-    @OneToMany(mappedBy = "isapres")
+    /*@OneToMany(mappedBy = "isapres")
     @JsonIgnore
     private List<Seguro> segurosList;
 
     //Isapre -> Plan
     @OneToMany(mappedBy = "isapres")
     @JsonIgnore
-    private List<Plan> planList;
+    private List<Plan> planList;*/
 }

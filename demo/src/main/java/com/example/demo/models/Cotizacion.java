@@ -2,15 +2,16 @@ package com.example.demo.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Id;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.NonNull;
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = "cotizaciones")
@@ -18,9 +19,9 @@ public class Cotizacion {
     @Id
     @GeneratedValue
     private String id;
-    @NonNull
+    @Column(nullable = false, name = "fecha")
     private Date fecha;
-    @NonNull
+    @Column(nullable = false, name = "monto")
     private int monto;
 
     public Cotizacion(String id, Date fecha, int monto) {
@@ -64,8 +65,8 @@ public class Cotizacion {
     }
 
     //Cotizacion -> Persona
-    @ManyToOne
+    /*@ManyToOne
     @JsonIgnore
     @JoinColumn(name = "personas")
-    private Persona persona;
+    private Persona persona;*/
 }

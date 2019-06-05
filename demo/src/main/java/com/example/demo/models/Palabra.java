@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "palabra")
+@Table(name = "palabras")
 public class Palabra {
     @Id
     @GeneratedValue
@@ -17,8 +17,6 @@ public class Palabra {
     private String texto;
     @Column(nullable = false, name = "tipo")
     private String tipo;
-
-    public Palabra(){}
 
     public Palabra(String texto, String tipo){
         this.texto = texto;

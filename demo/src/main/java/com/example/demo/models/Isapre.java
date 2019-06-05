@@ -2,11 +2,13 @@ package com.example.demo.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.*;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -75,12 +77,12 @@ public class Isapre {
     //RELACIONES
 
     //Isapre -> Seguro
-    @OneToMany(mappedBy = "isapres")
+    /*@OneToMany(mappedBy = "isapres")
     @JsonIgnore
     private List<Seguro> segurosList;
 
     //Isapre -> Plan
     @OneToMany(mappedBy = "isapres")
     @JsonIgnore
-    private List<Plan> planList;
+    private List<Plan> planList;*/
 }

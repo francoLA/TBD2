@@ -2,6 +2,7 @@ package com.example.demo.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
@@ -9,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.*;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -66,7 +68,7 @@ public class Persona {
     //RELACIONES
 
     //Persona -> Cotizacion
-    @OneToMany(mappedBy = "personas")
+    /*@OneToMany(mappedBy = "personas")
     @JsonIgnore
     private List<Cotizacion> cotizacionesList;
 
@@ -80,6 +82,6 @@ public class Persona {
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "planes")
-    private Plan plan;
+    private Plan plan;*/
     
 }

@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
-import com.example.demo.elasticSearch.SearchRepository;
-import com.example.demo.kafka.TwitterKafkaProducer;
+import com.example.demo.kafka.TwitterKafkaConsumer;
+import com.example.demo.kafka.TwitterListener;
 import com.example.demo.models.Twitt;
 import com.example.demo.repositories.TwittRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ public class TwittService {
     private TwittRepository twittRepository;
 
     @Autowired
-    private SearchRepository searchRepository;
+    private TwitterListener twitterListener;
 
     @Autowired
-    private TwitterKafkaProducer twitterKafkaProducer;
+    private TwitterKafkaConsumer twitterKafkaConsumer;
 
     @RequestMapping(value = "/{id", method = RequestMethod.GET)
     @ResponseBody
@@ -35,7 +35,11 @@ public class TwittService {
         return twittRepository.findAll();
     }
 
+
+
+
     @RequestMapping(value = "/startKafka", method = RequestMethod.GET)
+    @ResponseBody
     public void start(){
 
         List<String> hashtags = new ArrayList<>();
@@ -43,13 +47,23 @@ public class TwittService {
         hashtags.add("isapre");
         hashtags.add("consalud");
         hashtags.add("fonasa");
+        hashtags.add("Isapre");
+        hashtags.add("Consalud");
+        hashtags.add("Fonasa");
+        hashtags.add("Banmédica");
+        hashtags.add("Banmedica");
+        hashtags.add("banmedica");
+        hashtags.add("isapre");
+        hashtags.add("consalud");
+        hashtags.add("fonasa");
 
-        this.twitterKafkaProducer.run(this.twittRepository, this.searchRepository, hashtags);
+        twitterListener.run(hashtags);
+        twitterKafkaConsumer.run();
     }
 
     @RequestMapping(value = "/stopKafka", method = RequestMethod.GET)
     public List<Twitt> stop(){
-        this.twitterKafkaProducer.stop();
+        this.twitterKafkaConsumer.stop();
         return twittRepository.findAll();
     }
 

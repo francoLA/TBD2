@@ -2,7 +2,9 @@ package com.example.demo.services;
 
 import com.example.demo.kafka.TwitterKafkaConsumer;
 import com.example.demo.kafka.TwitterListener;
+import com.example.demo.models.Palabra;
 import com.example.demo.models.Twitt;
+import com.example.demo.repositories.PalabraRepository;
 import com.example.demo.repositories.TwittRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,9 @@ public class TwittService {
 
     @Autowired
     private TwitterKafkaConsumer twitterKafkaConsumer;
+
+    @Autowired
+    private PalabraRepository palabraRepository;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -44,18 +49,13 @@ public class TwittService {
 
         List<String> hashtags = new ArrayList<>();
 
-        hashtags.add("isapre");
-        hashtags.add("consalud");
-        hashtags.add("fonasa");
-        hashtags.add("Isapre");
-        hashtags.add("Consalud");
-        hashtags.add("Fonasa");
-        hashtags.add("Banmédica");
-        hashtags.add("Banmedica");
-        hashtags.add("banmedica");
-        hashtags.add("isapre");
-        hashtags.add("consalud");
-        hashtags.add("fonasa");
+        List<Palabra> palabras = this.palabraRepository.findAll();
+
+        for (Palabra p:palabras
+             ) {
+            hashtags.add(p.getTexto());
+            System.out.println(p.getTexto());
+        }
 
         twitterListener.run(hashtags);
         twitterKafkaConsumer.run();

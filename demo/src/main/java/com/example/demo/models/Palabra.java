@@ -2,7 +2,7 @@ package com.example.demo.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "palabras")
+@Table(name = "palabras", schema = "tbd")
 public class Palabra {
     @Id
     @GeneratedValue
@@ -12,11 +12,6 @@ public class Palabra {
     private String texto;
     @Column(nullable = false, name = "tipo")
     private String tipo;
-
-    public Palabra(String texto, String tipo){
-        this.texto = texto;
-        this.tipo = tipo;
-    }
 
     public String getId() {
         return id;

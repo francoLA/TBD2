@@ -54,7 +54,6 @@ public class TwittService {
         for (Palabra p:palabras
              ) {
             hashtags.add(p.getTexto());
-            System.out.println(p.getTexto());
         }
 
         twitterListener.run(hashtags);

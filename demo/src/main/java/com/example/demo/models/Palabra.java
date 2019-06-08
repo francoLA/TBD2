@@ -13,6 +13,8 @@ public class Palabra {
     @Column(nullable = false, name = "tipo")
     private String tipo;
 
+    public Palabra(){}
+
     public Palabra(String texto, String tipo){
         this.texto = texto;
         this.tipo = tipo;

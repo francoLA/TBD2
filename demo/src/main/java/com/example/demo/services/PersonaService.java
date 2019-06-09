@@ -17,8 +17,8 @@ public class PersonaService {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Persona getPersonaById(@PathVariable String id){
-        return this.personaRepository.findPersonaById(id);
+    public Persona getPersonaByIdPersona(@PathVariable String id){
+        return this.personaRepository.findPersonaByIdPersona(id);
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)

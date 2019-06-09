@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PlanRepository extends JpaRepository<Plan, String> {
-    Plan findPlanById(String id);
+    Plan findPlanByIdPlan(String id);
 }

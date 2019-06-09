@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface PalabraRepository extends JpaRepository<Palabra, String> {
-    Palabra findPalabraById(String id);
+    Palabra findPalabraByIdPalabra(String id);
     Palabra findPalabraByTexto(String texto);
     List<Palabra> findPalabraByTipo(String tipo);
 }

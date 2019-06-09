@@ -1,35 +1,48 @@
 package com.example.demo.models;
 
-// import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
-// import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "seguros")
+@Table(name = "seguro")
 public class Seguro {
     @Id
     @GeneratedValue
-    private String id;
+    @Column(name = "idSeguro")
+    private String idSeguro;
     @Column(nullable = false, name = "cobertura")
     private String cobertura;
     @Column(nullable = false, name = "duracion")
     private String duracion;
     @Column(nullable = false, name = "tipo")
     private String tipo;
+    //RELACIONES
+    //Seguro -> Persona
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idSeguro")
+    @JsonIgnore
+    private Set<Persona> personas;
+    //Seguro -> Isapre
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idFondo")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private FondoDeSalud fondoDeSalud;
 
-    public Seguro(String id, String cobertura, String duracion, String tipo) {
-        this.id = id;
+    public Seguro(String idSeguro, String cobertura, String duracion, String tipo) {
+        this.idSeguro = idSeguro;
         this.cobertura = cobertura;
         this.duracion = duracion;
         this.tipo = tipo;
     }
 
-    public String getId() {
-        return id;
+    public String getIdSeguro() {
+        return idSeguro;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdSeguro(String idSeguro) {
+        this.idSeguro = idSeguro;
     }
 
     public String getCobertura() {
@@ -59,23 +72,10 @@ public class Seguro {
     @Override
     public String toString() {
         return "Seguro{" +
-                "id=" + id +
+                "idSeguro=" + idSeguro +
                 ", cobertura='" + cobertura + '\'' +
                 ", duracion='" + duracion + '\'' +
                 ", tipo=" + tipo + '\'' +
                 '}';
     }
-
-    //RELACIONES
-
-    //Seguro -> Persona
-    /*@OneToMany(mappedBy = "seguros")
-    @JsonIgnore
-    private List<Persona> personasList;
-
-    //Seguro -> Isapre
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "isapres")
-    private Isapre isapre;*/
 }

@@ -17,8 +17,8 @@ public class CotizacionService {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Cotizacion getCotizacionById(@PathVariable String id){
-        return this.cotizacionRepository.findCotizacionById(id);
+    public Cotizacion getCotizacionByIdCotizacion(@PathVariable String id){
+        return this.cotizacionRepository.findCotizacionByIdCotizacion(id);
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)

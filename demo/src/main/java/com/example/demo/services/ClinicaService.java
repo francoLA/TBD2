@@ -17,8 +17,8 @@ public class ClinicaService {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Clinica getClinicaById(@PathVariable String id){
-        return this.clinicaRepository.findClinicaById(id);
+    public Clinica getClinicaByIdClinica(@PathVariable String id){
+        return this.clinicaRepository.findClinicaByIdClinica(id);
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)

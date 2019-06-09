@@ -1,32 +1,49 @@
 package com.example.demo.models;
 
-// import java.util.List;
+import java.util.List;
 import javax.persistence.*;
-// import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "personas")
+@Table(name = "persona")
 public class Persona {
     @Id
     @GeneratedValue
-    private String id;
+    @Column(name = "idPersona")
+    private String idPersona;
     @Column(nullable = false, name = "nombre")
     private String nombre;
     @Column(nullable = false, name = "genero")
     private String genero;
+    //RELACIONES
+    //Persona -> Cotizacion
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idPersona")
+    @JsonIgnore
+    private List<Cotizacion> cotizaciones;
+    //Persona -> Seguro
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idPersona")
+    @JsonIgnore
+    private List<Seguro> seguros;
+    //Persona -> Plan
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idPersona")
+    @JsonIgnore
+    private List<Plan> planes;
 
-    public Persona(String id, String nombre, String genero) {
-        this.id = id;
+    public Persona(String idPersona, String nombre, String genero) {
+        this.idPersona = idPersona;
         this.nombre = nombre;
         this.genero = genero;
     }
 
-    public String getId() {
-        return id;
+    public String getIdPersona() {
+        return idPersona;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdPersona(String idPersona) {
+        this.idPersona = idPersona;
     }
 
     public String getNombre() {
@@ -49,29 +66,9 @@ public class Persona {
     @Override
     public String toString() {
         return "Persona{" +
-                "id=" + id +
+                "idPersona=" + idPersona +
                 ", nombre='" + nombre + '\'' +
                 ", genero='" + genero + '\'' +
                 '}';
     }
-
-    //RELACIONES
-
-    //Persona -> Cotizacion
-    /*@OneToMany(mappedBy = "personas")
-    @JsonIgnore
-    private List<Cotizacion> cotizacionesList;
-
-    //Persona -> Seguro
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "seguros")
-    private Seguro seguro;
-
-    //Persona -> Plan
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "planes")
-    private Plan plan;*/
-    
 }

@@ -22,8 +22,11 @@ public class FondoDeSalud {
     private int aprobacion;
     @Column(nullable = false, name = "desaprobacion")
     private int desaprobacion;
-    @Column(nullable = false, name = "cantidadAfiliados")
-    private int cantidadAfiliados;  
+    @Column(nullable = false, name = "cantidad_afiliados")
+    private int cantidadAfiliados;
+    @Column(name = "clinicas_afiliadas")
+    private List<String> clinicasAfiliadas;
+
     //RELACIONES
     //Fondo de Salud -> Seguro
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

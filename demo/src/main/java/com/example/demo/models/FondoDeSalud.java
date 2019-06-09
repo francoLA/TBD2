@@ -1,8 +1,9 @@
 package com.example.demo.models;
 
-import java.util.List;
-import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "fondo_de_salud")
@@ -35,7 +36,7 @@ public class FondoDeSalud {
     @JsonIgnore
     private List<Plan> planList;
 
-    public FondoDeSalud(String id, String nombre, String telefono, boolean fonasa) {
+    /*public FondoDeSalud(String id, String nombre, String telefono, boolean fonasa) {
         this.idFondo = id;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -43,7 +44,7 @@ public class FondoDeSalud {
         this.aprobacion = 0;
         this.desaprobacion = 0;
         this.cantidadAfiliados = 0;
-    }
+    }*/
 
     public String getIdFondo() {
         return idFondo;

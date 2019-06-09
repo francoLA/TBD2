@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClinicaRepository extends JpaRepository<Clinica, String> {
-    Clinica findClinicaById(String id);
+    Clinica findClinicaByIdClinica(String id);
 }

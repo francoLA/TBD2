@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SeguroRepository extends JpaRepository<Seguro, String> {
-    Seguro findSeguroById(String id);
+    Seguro findSeguroByIdSeguro(String id);
 }

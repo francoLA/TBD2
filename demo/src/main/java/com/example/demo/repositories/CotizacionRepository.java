@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CotizacionRepository extends JpaRepository<Cotizacion, String> {
-    Cotizacion findCotizacionById(String id);
+    Cotizacion findCotizacionByIdCotizacion(String id);
 }

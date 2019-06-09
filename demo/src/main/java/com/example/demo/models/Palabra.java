@@ -6,19 +6,27 @@ import javax.persistence.*;
 public class Palabra {
     @Id
     @GeneratedValue
-    @Column(name = "id")
-    private String id;
+    @Column(name = "idPalabra")
+    private String idPalabra;
     @Column(nullable = false, name = "texto")
     private String texto;
     @Column(nullable = false, name = "tipo")
     private String tipo;
 
-    public String getId() {
-        return id;
+    public Palabra(){}
+
+    public Palabra(String idPalabra, String texto, String tipo){
+        this.idPalabra = idPalabra;
+        this.texto = texto;
+        this.tipo = tipo;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getIdPalabra() {
+        return idPalabra;
+    }
+
+    public void setIdPalabra(String id) {
+        this.idPalabra = id;
     }
 
     public String getTexto() {

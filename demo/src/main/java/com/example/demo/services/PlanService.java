@@ -17,8 +17,8 @@ public class PlanService {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Plan getPlanById(@PathVariable String id){
-        return this.planRepository.findPlanById(id);
+    public Plan getPlanByIdPlan(@PathVariable String id){
+        return this.planRepository.findPlanByIdPlan(id);
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)

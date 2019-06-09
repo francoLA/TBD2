@@ -28,12 +28,19 @@ public class FondoDeSalud {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idFondo")
     @JsonIgnore
-    private List<Seguro> segurosList;
+    private List<Seguro> seguros;
     //Fondo de Salud -> Plan
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idFondo")
     @JsonIgnore
-    private List<Plan> planList;
+    private List<Plan> planes;
+    //Fondo de Salud -> Palabras
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idFondo")
+    @JsonIgnore
+    private List<Palabra> palabras;
+
+    public FondoDeSalud(){}
 
     public FondoDeSalud(String id, String nombre, String telefono, boolean fonasa) {
         this.idFondo = id;
@@ -99,6 +106,30 @@ public class FondoDeSalud {
 
     public void setCantidadAfiliados(int cantidadAfiliados){
         this.cantidadAfiliados = cantidadAfiliados;
+    }
+
+    public List<Seguro> getSeguros(){
+        return seguros;
+    }
+
+    public void setSeguros(List<Seguro> seguros){
+        this.seguros = seguros;
+    }
+
+    public List<Plan> getPlanes(){
+        return planes;
+    }
+
+    public void setPlanes(List<Plan> planes){
+        this.planes = planes;
+    }
+
+    public List<Palabra> getPalabras(){
+        return palabras;
+    }
+
+    public void setPalabras(List<Palabra> palabras){
+        this.palabras = palabras;
     }
 
     @Override

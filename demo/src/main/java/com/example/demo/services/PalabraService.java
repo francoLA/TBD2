@@ -28,6 +28,6 @@ public class PalabraService {
     @RequestMapping(value = "/categoria/{tipo}", method = RequestMethod.GET)
     @ResponseBody
     public List<Palabra> getPalabraByTipo(@PathVariable String tipo){
-        return palabraRepository.findPalabraByTipo(tipo);
+        return palabraRepository.findPalabrasByTipo(tipo);
     }    
 }

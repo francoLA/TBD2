@@ -1,5 +1,7 @@
 package com.example.demo.models;
+
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "palabra")
@@ -12,6 +14,11 @@ public class Palabra {
     private String texto;
     @Column(nullable = false, name = "tipo")
     private String tipo;
+    //Seguro -> Isapre
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idFondo")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private FondoDeSalud fondoDeSalud;
 
     public Palabra(){}
 
@@ -43,5 +50,13 @@ public class Palabra {
 
     public void setTipo(String tipo){
         this.tipo = tipo;
+    }
+
+    public FondoDeSalud getFondo(){
+        return fondoDeSalud;
+    }
+
+    public void setFondo(FondoDeSalud fondo){
+        this.fondoDeSalud = fondo;
     }
 }

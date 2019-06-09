@@ -21,8 +21,8 @@ public class PalabraService {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Palabra getPalabraById(@PathVariable String id){
-        return palabraRepository.findPalabraById(id);
+    public Palabra getPalabraByIdPalabra(@PathVariable String id){
+        return palabraRepository.findPalabraByIdPalabra(id);
     }
 
     @RequestMapping(value = "/categoria/{tipo}", method = RequestMethod.GET)

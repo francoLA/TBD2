@@ -1,32 +1,45 @@
 package com.example.demo.models;
 
-// import java.util.List;
+import java.util.List;
 import javax.persistence.*;
-// import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "planes")
+@Table(name = "plan")
 public class Plan {
     @Id
     @GeneratedValue
-    private String id;
+    @Column(name = "idPlan")
+    private String idPlan;
     @Column(nullable = false, name = "cobertura")
     private String cobertura;
     @Column(nullable = false, name = "cantidad_personas")
     private int cantidad_personas;
+    //RELACIONES
+    //Plan -> Persona
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idPlan")
+    @JsonIgnore
+    private List<Persona> personas;
+    //Plan -> Fondo de Salud
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "idFondo")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private FondoDeSalud fondoDeSalud;
 
-    public Plan(String id, String cobertura, int cantidad_personas) {
-        this.id = id;
+    public Plan(String idPlan, String cobertura, int cantidad_personas) {
+        this.idPlan = idPlan;
         this.cobertura = cobertura;
         this.cantidad_personas = cantidad_personas;
     }
 
-    public String getId() {
-        return id;
+    public String getIdPlan() {
+        return idPlan;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdPlan(String id) {
+        this.idPlan = id;
     }
 
     public String getCobertura() {
@@ -49,22 +62,9 @@ public class Plan {
     @Override
     public String toString() {
         return "Plan{" +
-                "id=" + id +
+                "idPlan=" + idPlan +
                 ", cobertura='" + cobertura + '\'' +
                 ", cantidad personas='" + cantidad_personas + '\'' +
                 '}';
     }
-
-    //RELACIONES
-
-    //Plan -> Persona
-    /*@OneToMany(mappedBy = "planes")
-    @JsonIgnore
-    private List<Persona> personasList;
-
-    //Plan -> Isapre
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "isapres")
-    private Isapre isapre;*/
 }

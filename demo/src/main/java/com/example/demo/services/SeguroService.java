@@ -17,8 +17,8 @@ public class SeguroService {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Seguro getSeguroById(@PathVariable String id){
-        return this.seguroRepository.findSeguroById(id);
+    public Seguro getSeguroByIdSeguro(@PathVariable String id){
+        return this.seguroRepository.findSeguroByIdSeguro(id);
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)

@@ -2,31 +2,39 @@ package com.example.demo.models;
 
 import java.util.Date;
 import javax.persistence.*;
-// import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "cotizaciones")
+@Table(name = "cotizacion")
 public class Cotizacion {
     @Id
     @GeneratedValue
-    private String id;
+    @Column(name = "idCotizacion")
+    private String idCotizacion;
     @Column(nullable = false, name = "fecha")
     private Date fecha;
     @Column(nullable = false, name = "monto")
     private int monto;
-
+    //Cotizacion -> Persona
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @JoinColumn(name = "idPersona")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Persona persona;
+    
     public Cotizacion(String id, Date fecha, int monto) {
-        this.id = id;
+        this.idCotizacion = id;
         this.fecha = fecha;
         this.monto = monto;
     }
 
-    public String getId() {
-        return id;
+    public String getIdCotizacion() {
+        return idCotizacion;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdCotizacion(String id) {
+        this.idCotizacion = id;
     }
 
     public Date getFecha() {
@@ -45,19 +53,21 @@ public class Cotizacion {
         this.monto = monto;
     }
 
+    public Persona getPersona(){
+        return persona;
+    }
+
+    public void setPersona(Persona persona){
+        this.persona = persona;
+    }
 
     @Override
     public String toString() {
         return "Cotizacion{" +
-                "id=" + id +
+                "idCotizacion=" + idCotizacion +
                 ", fecha='" + fecha + '\'' +
                 ", monto='" + monto + '\'' +
                 '}';
     }
 
-    //Cotizacion -> Persona
-    /*@ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "personas")
-    private Persona persona;*/
 }

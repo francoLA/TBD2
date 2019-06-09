@@ -2,12 +2,12 @@ package com.example.demo.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "palabras")
+@Table(name = "palabra")
 public class Palabra {
     @Id
     @GeneratedValue
-    @Column(name = "id")
-    private String id;
+    @Column(name = "idPalabra")
+    private String idPalabra;
     @Column(nullable = false, name = "texto")
     private String texto;
     @Column(nullable = false, name = "tipo")
@@ -15,17 +15,18 @@ public class Palabra {
 
     public Palabra(){}
 
-    public Palabra(String texto, String tipo){
+    public Palabra(String idPalabra, String texto, String tipo){
+        this.idPalabra = idPalabra;
         this.texto = texto;
         this.tipo = tipo;
     }
 
-    public String getId() {
-        return id;
+    public String getIdPalabra() {
+        return idPalabra;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdPalabra(String id) {
+        this.idPalabra = id;
     }
 
     public String getTexto() {

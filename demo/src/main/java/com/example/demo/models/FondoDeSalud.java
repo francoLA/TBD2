@@ -24,8 +24,9 @@ public class FondoDeSalud {
     private int desaprobacion;
     @Column(nullable = false, name = "cantidad_afiliados")
     private int cantidadAfiliados;
+
     @Column(name = "clinicas_afiliadas")
-    private List<String> clinicasAfiliadas;
+    private String clinicasAfiliadas;
 
     //RELACIONES
     //Fondo de Salud -> Seguro
@@ -103,6 +104,14 @@ public class FondoDeSalud {
 
     public void setCantidadAfiliados(int cantidadAfiliados){
         this.cantidadAfiliados = cantidadAfiliados;
+    }
+
+    public String getClinicasAfiliadas() {
+        return clinicasAfiliadas;
+    }
+
+    public void setClinicasAfiliadas(String clinicasAfiliadas) {
+        this.clinicasAfiliadas = clinicasAfiliadas;
     }
 
     @Override

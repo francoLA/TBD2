@@ -81,4 +81,30 @@ public class FondoDeSaludService {
         return comparacion;
     }
 
+    @RequestMapping(value = "/getFonasa", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Integer> getFonasa(){
+        List<Integer> comparacion = new ArrayList<>();
+        List<FondoDeSalud> fondos = fondoDeSaludRepository.findAll();
+
+        FondoDeSalud fonasa = fondoDeSaludRepository.findFondoDeSaludByIdFondo("1");
+        comparacion.add(fonasa.getAprobacion());
+        comparacion.add(fonasa.getDesaprobacion());
+
+        return comparacion;
+    }
+
+    @RequestMapping(value = "/getIsapre", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Integer> getIsapre(){
+        List<Integer> comparacion = new ArrayList<>();
+        List<FondoDeSalud> fondos = fondoDeSaludRepository.findAll();
+
+
+        FondoDeSalud isapre = fondoDeSaludRepository.findFondoDeSaludByIdFondo("14");
+        comparacion.add(isapre.getAprobacion());
+        comparacion.add(isapre.getDesaprobacion());
+        return comparacion;
+    }
+
 }

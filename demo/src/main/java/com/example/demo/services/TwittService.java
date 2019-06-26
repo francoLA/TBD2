@@ -10,8 +10,7 @@ import com.example.demo.repositories.TwittRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/twitt")
@@ -237,5 +236,29 @@ public class TwittService {
             }
         }
         return cantidades;
+    }
+
+    @RequestMapping(value = "/topInfluencia", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Twitt> topInfluencia(){
+        List<Twitt> tweets = twittRepository.findAll();
+        List<Twitt> topTweets = new ArrayList<Twitt>();
+        //Bubblesort
+        Twitt temp;
+        int remaining = tweets.size()-1;
+        for(int i=0; i<tweets.size();i++){
+            for(int j=0;j<remaining;j++){
+                if(tweets.get(j).getInfluence() > tweets.get(j+1).getInfluence()){
+                    temp = tweets.get(j+1);
+                    tweets.set(j+1,tweets.get(j));
+                    tweets.set(j,temp);
+                }
+            }
+            remaining--;
+        }
+        for(int i=0;i<5;i++){
+            topTweets.add(tweets.get(i));
+        }
+        return topTweets;
     }
 }

@@ -1,4 +1,21 @@
-insert into palabra (id_palabra, texto, tipo)
+INSERT INTO fondo_de_salud (id_fondo, aprobacion, cantidad_afiliados, desaprobacion, fonasa, nombre, telefono, clinicas_afiliadas)
+VALUES
+('1',756,1143,387,TRUE,'Fonasa','0', NULL),
+('2',2,4,2,FALSE,'Colmena','0', 'Clínica UC San Carlos de Apoquindo, Clínica Indisa, Clínica Santa María, Clínica Universidad De Los Andes, Hospital Clínico UC Marcoleta, Medicien'),
+('3',1,1,0,FALSE,'CruzBlanca','0', 'Clinica Juan Pablo II, Hospital San Juan de Dios, Hospital Clinico San Borja Arriaran, Hospital del Profesor, Clinica Central, Clinica Las Violetas, Integramedica, Instituto Traumatologico'),
+('4',3,7,4,FALSE,'Consalud','0', 'Clínica Alemana, Clínica Bío Bío, Clínica Dávila, Clínica Indisa, Clínica Redsalud, Clínica Vespucio, Hospital Clínico Universidad de Chile'),
+('5',3,5,2,FALSE,'VidaTres','0', 'Clínica Dávila, Vidaintegra, Centro Médico San Agustín, Clínica Bicentenario, Integramédica, Sonorad, Clínica Vespucio, Clínica Indisa, Clínica Las Condes'),
+('6',5,5,0,FALSE,'NuevaMasVida','0', 'Clínica Las Condes, Clínica Alemana, Clínica Universidad de Los Andes, Clínica Indisa, Clínica Vespucio, Clínica Alameda, Clínica Juan Pablo II, Clínica Sierra Bella, Clínica Redsalud'),
+('7',5,13,8,FALSE,'Banmédica','0', 'Clínica Dávila, Centro Médico San Agustín, Clínica Bicentenario, Salud Maipú S.A., Integramédica, Vidaintegra, Clínica Vespucio, Clínica Indisa, Sonorad, Clínica Las Condes'),
+('8',0,0,0,FALSE,'Chuquicamata','0', NULL),
+('9',0,0,0,FALSE,'CruzDelNorte','0', NULL),
+('10',0,0,0,FALSE,'Fundación','0', NULL),
+('11',0,0,0,FALSE,'Fusat','0', NULL),
+('12',0,0,0,FALSE,'RíoBlanco','0', NULL),
+('13',0,0,0,FALSE,'SanLorenzo','0', NULL),
+('14',166,338,172,FALSE,'Isapre','0', NULL);
+
+insert into palabras (id_palabra, texto, tipo)
 values
 ('1', 'Fonasa', 'Fondo de Salud'),
 ('2', 'fonasa', 'Fondo de Salud'),

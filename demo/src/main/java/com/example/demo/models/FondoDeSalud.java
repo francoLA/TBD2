@@ -1,14 +1,18 @@
 package com.example.demo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.neo4j.ogm.annotation.GraphId;
+import org.neo4j.ogm.annotation.NodeEntity;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "fondo_de_salud")
+@NodeEntity
 public class FondoDeSalud {
     @Id
+    @GraphId
     @GeneratedValue
     @Column(name = "idFondo")
     private String idFondo;

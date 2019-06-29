@@ -52,9 +52,8 @@ public class TwitterKafkaConsumer {
                         latitude = s.getGeoLocation().getLatitude();
                         longitude = s.getGeoLocation().getLongitude();
                     }
-                    Double influence = 0.4*s.getUser().getFavouritesCount() + 0.35* s.getRetweetCount() + 0.25*s.getFavoriteCount();
                     User user = new User(s.getUser().getId(),s.getUser().getName(),s.getUser().getScreenName(),s.getUser().getLocation(),s.getUser().getFollowersCount());
-                    Twitt twitt = new Twitt(s.getId(),s.getText(),s.getLang(),user,s.getRetweetCount(),s.getFavoriteCount(),country,countryCode,region,latitude,longitude,influence);
+                    Twitt twitt = new Twitt(s.getId(),s.getText(),s.getLang(),user,s.getRetweetCount(),s.getFavoriteCount(),country,countryCode,region,latitude,longitude);
                     this.twittRepository.save(twitt);
 
                 }catch(TwitterException name) { System.out.println(name); }

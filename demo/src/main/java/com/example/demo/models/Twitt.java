@@ -27,7 +27,6 @@ public class Twitt {
     private String state;
     private Double geoLatitude;
     private Double geoLongitude;
-    private Double influence;
 
     @SerializedName("retweet_count")
     private int retweetCount;
@@ -35,7 +34,7 @@ public class Twitt {
     @SerializedName("favorite_count")
     private int favoriteCount;
 
-    public Twitt(Long id, String text, String lang, User user, int retweetCount, int favoriteCount, String country, String countryCode, String state, Double geoLatitude, Double geoLongitude, Double influence) {
+    public Twitt(Long id, String text, String lang, User user, int retweetCount, int favoriteCount, String country, String countryCode, String state, Double geoLatitude, Double geoLongitude) {
         this.id = id;
         this.text = text;
         this.lang = lang;
@@ -47,7 +46,6 @@ public class Twitt {
         this.state = state;
         this.geoLatitude = geoLatitude;
         this.geoLongitude = geoLongitude;
-        this.influence = influence;
     }
 
     public Long getId() {
@@ -96,14 +94,6 @@ public class Twitt {
 
     public void setFavoriteCount(int favoriteCount) {
         this.favoriteCount = favoriteCount;
-    }
-
-    public Double getInfluence() {
-        return influence;
-    }
-
-    public void setInfluence(Double influence) {
-        this.influence = influence;
     }
 
     public String getCountry() { return country; }

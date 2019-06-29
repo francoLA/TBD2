@@ -5,6 +5,7 @@ import com.example.demo.kafka.TwitterListener;
 import com.example.demo.models.Palabra;
 import com.example.demo.models.Twitt;
 import com.example.demo.models.Palabra;
+import com.example.demo.services.SearchService;
 import com.example.demo.repositories.PalabraRepository;
 import com.example.demo.repositories.TwittRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class TwittService {
 
     @Autowired
     private PalabraRepository palabraRepository;
+
+    @Autowired
+    private SearchService searchService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -238,27 +242,48 @@ public class TwittService {
         return cantidades;
     }
 
-    @RequestMapping(value = "/topInfluencia", method = RequestMethod.GET)
+    @RequestMapping(value = "/getTopFonasa", method = RequestMethod.GET)
     @ResponseBody
-    public List<Twitt> topInfluencia(){
-        List<Twitt> tweets = twittRepository.findAll();
+    public List<Twitt> getTopFonasa(){
         List<Twitt> topTweets = new ArrayList<Twitt>();
-        //Bubblesort
-        Twitt temp;
-        int remaining = tweets.size()-1;
-        for(int i=0; i<tweets.size();i++){
-            for(int j=0;j<remaining;j++){
-                if(tweets.get(j).getInfluence() > tweets.get(j+1).getInfluence()){
-                    temp = tweets.get(j+1);
-                    tweets.set(j+1,tweets.get(j));
-                    tweets.set(j,temp);
+        List<Twitt> tweetsFonasa = searchService.searchByContent("Fonasa");
+        List<Twitt> tweetsfonasa = searchService.searchByContent("fonasa");
+        tweetsFonasa.addAll(tweetsfonasa);
+        Twitt tweet = tweetsFonasa.get(0);
+        int seguidores = tweetsFonasa.get(0).getUser().getFollowersCount();
+        for(int i=0;i<5;i++){
+            for(int j=0;j<tweetsFonasa.size();j++){
+                if(seguidores < tweetsFonasa.get(j).getUser().getFollowersCount()){
+                    seguidores = tweetsFonasa.get(j).getUser().getFollowersCount();
+                    tweet = tweetsFonasa.get(j);
                 }
             }
-            remaining--;
-        }
-        for(int i=0;i<5;i++){
-            topTweets.add(tweets.get(i));
+            topTweets.add(tweet);
+            tweetsFonasa.remove(tweet);
         }
         return topTweets;
-    }
+    } 
+
+    @RequestMapping(value = "/getTopIsapre", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Twitt> getTopIsapre(){
+        List<Twitt> topTweets = new ArrayList<Twitt>();
+        List<Twitt> tweetsIsapre = searchService.searchByContent("Isapre");
+        List<Twitt> tweetsisapre = searchService.searchByContent("isapre");
+        tweetsIsapre.addAll(tweetsisapre);
+        Twitt tweet = tweetsIsapre.get(0);
+        int seguidores = tweetsIsapre.get(0).getUser().getFollowersCount();
+        for(int i=0;i<5;i++){
+            for(int j=0;j<tweetsIsapre.size();j++){
+                if(seguidores < tweetsIsapre.get(j).getUser().getFollowersCount()){
+                    seguidores = tweetsIsapre.get(j).getUser().getFollowersCount();
+                    tweet = tweetsIsapre.get(j);
+                }
+            }
+            topTweets.add(tweet);
+            tweetsIsapre.remove(tweet);
+        }
+        return topTweets;
+    } 
+
 }

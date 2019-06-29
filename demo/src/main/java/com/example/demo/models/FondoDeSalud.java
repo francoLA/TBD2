@@ -9,11 +9,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "fondo_de_salud")
-@NodeEntity
 public class FondoDeSalud {
     @Id
-    @GraphId
-    @GeneratedValue
     @Column(name = "idFondo")
     private String idFondo;
     @Column(nullable = false, name = "nombre")

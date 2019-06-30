@@ -12,8 +12,5 @@ import java.util.Collection;
 @RequestMapping(value = "/neo")
 public class NeoService {
 
-    @Autowired
-    UserNodoRepository userRepository;
-
 
 }

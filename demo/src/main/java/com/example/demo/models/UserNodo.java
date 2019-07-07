@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @NodeEntity
 @Data
@@ -24,6 +28,9 @@ public class UserNodo {
     private int followersCount;
     private Long userID;
     private Double size;
+
+    @Relationship(type = "COMENTA",direction = Relationship.OUTGOING)
+    private List<FondoDeSaludNodo> fondos = new ArrayList<>();
 
     public UserNodo(String name, int followersCount, Long userID) {
         this.name = name;

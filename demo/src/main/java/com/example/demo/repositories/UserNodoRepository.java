@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @RepositoryRestResource(collectionResourceRel = "User", path = "User")
 @Repository
-public interface UserNodoRepository extends Neo4jRepository<User, Long> {
-
-   // UserNodo findByUserId(@Param("userID") Long userID);
+public interface UserNodoRepository extends Neo4jRepository<UserNodo, Long> {
+    UserNodo findByUserID(@Param("userID") Long userID);
 }

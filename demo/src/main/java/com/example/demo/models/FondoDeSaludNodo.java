@@ -17,9 +17,9 @@ public class FondoDeSaludNodo {
     @GeneratedValue
     private Long id;
 
-    private Long fdsId;
+    private String fdsID;
 
-    private String nombre;
+    private String name;
 
     private String telefono;
 
@@ -33,9 +33,9 @@ public class FondoDeSaludNodo {
 
     private Double size;
 
-    public FondoDeSaludNodo(Long fdsId, String nombre) {
-        this.fdsId = fdsId;
-        this.nombre = nombre;
+    public FondoDeSaludNodo(String fdsID, String nombre) {
+        this.fdsID = fdsID;
+        this.name = nombre;
         this.size = 0.0;
     }
 
@@ -48,11 +48,11 @@ public class FondoDeSaludNodo {
     }
 
     public String getNombre() {
-        return nombre;
+        return name;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.name = nombre;
     }
 
     public String getTelefono() {
@@ -95,12 +95,12 @@ public class FondoDeSaludNodo {
         this.cantidadAfiliados = cantidadAfiliados;
     }
 
-    public Long getFdsId() {
-        return fdsId;
+    public String getFdsId() {
+        return fdsID;
     }
 
-    public void setFdsId(Long fdsId) {
-        this.fdsId = fdsId;
+    public void setFdsId(String fdsId) {
+        this.fdsID = fdsId;
     }
 
     public Double getSize() {

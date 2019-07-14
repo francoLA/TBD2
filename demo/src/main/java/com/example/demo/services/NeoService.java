@@ -100,7 +100,7 @@ public class NeoService {
                     user.setScreenName(user.getScreenName().replaceAll("'", ""));
                 }
 
-                StatementResult verificacion = session.run("match (u:User) where u.name='"+user.getScreenName()+"' return u.name as name, u.followers as followers");
+                StatementResult verificacion = session.run("match (u:User) where u.name='"+user.getScreenName()+"' return distinct u.name as name, u.followers as followers");
 
                 if(!verificacion.hasNext()){
                     session.run("CREATE(u:User {name:'" + user.getScreenName() + "',followers:" + user.getFollowersCount() + "})");

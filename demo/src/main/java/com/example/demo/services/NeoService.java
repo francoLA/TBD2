@@ -88,6 +88,7 @@ public class NeoService {
 
             List<Twitt> twitts = new ArrayList<>();
             twitts.addAll(this.searchRepository.findByText(fondoDeSalud.getNombre()));
+            System.out.println("cantidad= "+twitts.size());
 
             int aux = 0;
             for(Twitt twitt:twitts){

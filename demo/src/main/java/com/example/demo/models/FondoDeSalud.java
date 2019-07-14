@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.neo4j.ogm.annotation.GraphId;
+import org.neo4j.ogm.annotation.NodeEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,7 +11,6 @@ import java.util.List;
 @Table(name = "fondo_de_salud")
 public class FondoDeSalud {
     @Id
-    @GeneratedValue
     @Column(name = "idFondo")
     private String idFondo;
     @Column(nullable = false, name = "nombre")

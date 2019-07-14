@@ -1,39 +1,42 @@
 package com.example.demo.models;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.neo4j.ogm.annotation.*;
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
+import java.util.ArrayList;
 import java.util.List;
 
-
+@NodeEntity
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-@Document(indexName = "users", type = "users",shards = 2)
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class User {
+public class UserNodo {
 
     @Id
+    @GeneratedValue
     private Long id;
+
     private String name;
 
-    @SerializedName("screen_name")
     private String screenName;
     private String location;
-
-    @SerializedName("followers_count")
     private int followersCount;
+    private Long userID;
+    private Double size;
 
+    @Relationship(type = "COMENTA",direction = Relationship.OUTGOING)
+    private List<FondoDeSaludNodo> fondos = new ArrayList<>();
 
-    public User(Long id, String name, String screenName, String location, int followersCount) {
-        this.id = id;
+    public UserNodo(String name, int followersCount, Long userID) {
         this.name = name;
-        this.screenName = screenName;
-        this.location = location;
         this.followersCount = followersCount;
+        this.userID = userID;
+        this.size = 0.0;
     }
 
     public Long getId() {
@@ -76,14 +79,19 @@ public class User {
         this.followersCount = followersCount;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", screenName='" + screenName + '\'' +
-                ", location='" + location + '\'' +
-                ", followersCount=" + followersCount +
-                '}';
+    public Long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
+
+    public Double getSize() {
+        return size;
+    }
+
+    public void setSize(Double size) {
+        this.size = size;
     }
 }

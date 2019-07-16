@@ -109,7 +109,7 @@ public class NeoService {
                 try{
                     session.run("match (s:Fondo) where s.name='" + fondoDeSalud.getNombre() + "'"
                             + "  match (u:User) where u.name='" + user.getScreenName() + "'"
-                            + "  create (u)-[label:Comenta]->(s)");
+                            + "  create unique (u)-[label:Comenta]->(s)");
                 }catch (EntityNotFoundException e){
                     System.out.println("error");
                 }
